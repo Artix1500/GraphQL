@@ -17,7 +17,7 @@ app.use('/graphql', graphqlHttp({
     graphiql: true
 }));
 
-mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-pdnrl.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`)
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-1zeo7.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`)
 .then(() => {
     app.listen(3024);
 }).catch(err => {
