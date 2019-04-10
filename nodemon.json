@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_USER": "Artur",
+        "MONGO_PASSWORD": "adAfUtBHv0SPOc9J",
+        "MONGO_DB": "envents-graphql"
+    }
+}
