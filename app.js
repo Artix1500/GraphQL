@@ -10,8 +10,6 @@ const User = require('./models/user');
 
 const app = express();
 
-const events = [];
-
 app.use(bodyParser.json());
 
 app.use('/graphql', graphqlHttp({
@@ -57,17 +55,19 @@ app.use('/graphql', graphqlHttp({
         }
     `),
     rootValue: {
-        events: () => {
-            return Event.find().then(res => {
+        events: async () => {
+            try {
+                const res = await Event.find();
                 return res.map(event => {
-                    return { ...event._doc};
-                })
-            }).catch(err => { 
+                    return { ...event._doc };
+                });
+            }
+            catch (err) {
                 console.log(err);
                 throw err;
-            });
+            }
         },
-        createEvent: (args) => {
+        createEvent: async (args) => {
             const event = new Event({
                 title: args.eventInput.title,
                 description: args.eventInput.description,
@@ -76,50 +76,38 @@ app.use('/graphql', graphqlHttp({
                 creator: '5cada95bfa5a6918c6f96b6d'
             });
             let createdEvent;
-            // events.push(event);
-            return event.save()
-            .then(res => {
+            try{
+                const res = await event.save()
                 createdEvent = {...res._doc };
-                return User.findById('5cada95bfa5a6918c6f96b6d');
-            })
-            .then(user => {
+                const user = await User.findById('5cada95bfa5a6918c6f96b6d');
                 if(!user){
                     throw new Error('Cant find User');
                 }
                 user.createdEvents.push(event);
-                return user.save();
-            })
-            .then(res => {
+                await user.save();
                 return createdEvent;
-            })
-            .catch(err => { 
-                console.log(err);
+            }
+            catch (err) {
                 throw err;
-            });
+            } 
         },
-        createUser: (args) => {
-            return User.findOne({
-                email: args.userInput.email
-            })
-            .then(user => {
-                if(user){
-                    throw new Error('User exists already.')
+        createUser: async (args) => {
+            try {
+                const user = await User.findOne({email: args.userInput.email});
+                if (user) {
+                    throw new Error('User exists already.');
                 }
-                return bcrypt.hash(args.userInput.password, 12)
-            })
-            .then(hashedPassword => {
-                const user = new User({
+                const hashedPassword = await bcrypt.hash(args.userInput.password, 12);
+                const user_1 = new User({
                     email: args.userInput.email,
                     password: hashedPassword
                 });
-                return user.save();
-            })
-            .then(result => {
-                return {...result._doc, password: null}
-            })
-            .catch(err => {
+                const result = user_1.save();
+                return { ...result._doc, password: null };
+            }
+            catch (err) {
                 throw err;
-            });
+            }
         }
     },
     graphiql: true
