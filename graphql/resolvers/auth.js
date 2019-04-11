@@ -14,8 +14,8 @@ module.exports = {
                 email: args.userInput.email,
                 password: hashedPassword
             });
-            const result = user_1.save();
-            return { ...result._doc, password: null };
+            const result = await user_1.save();
+            return { ...result._doc, password: null, _id: result.id };
         }
         catch (err) {
             throw err;
