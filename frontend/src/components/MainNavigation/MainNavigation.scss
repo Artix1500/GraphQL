@@ -20,6 +20,7 @@
 .main-nav-item {
     margin: 0 0 0 1.5rem;
     float: right;
+    width: 100%;
 
     ul {
         display: flex;
@@ -27,20 +28,28 @@
         padding: 0;
         margin: 0;
         float: right;
+        margin-right: 2rem;
 
         li {
             padding: 0 1rem;
             margin: 0;
 
-            a {
+            a,button {
                 text-decoration: none;
                 color: $white;
+                background: none;
+                border: none;
+                cursor: pointer;
+                font-size: 1rem;
+                padding: 0;
             }
 
-            a:hover, 
-            a:active,
-            a.active {
+            a:hover,button:hover 
+            a:active,button:active 
+            a.active,button:focus  {
+                outline: 0;
                 text-decoration: none;
+                border: none;
                 color: $activeWhite;
             }
         }

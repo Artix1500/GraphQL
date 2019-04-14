@@ -5,3 +5,20 @@ $activeWhite: rgb(209, 209, 209);
 .main-content {
     margin: 4rem 2.5rem;
 }
+
+button {
+    background: $mainColor;
+    font: inherit;
+    border:1px solid $mainColor;
+    border-radius: 3px;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    box-shadow: none;
+    cursor: pointer;
+}
+
+button:hover,
+button:active{
+    background: darken( $mainColor, 5% );
+    border:1px solid darken( $mainColor, 5% );
+}
