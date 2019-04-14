@@ -1,8 +1,23 @@
 import React , { Component } from 'react';
 
+import './Auth.scss';
+
 class AuthPage extends Component {
     render() {
-        return (<h1> AUTH PAGE </h1>);
+        return <form className="auth-form">
+            <div className="form-control">
+                <label htmlFor="email">E-Mail</label>
+                <input type="email" id="email"></input> 
+            </div>
+            <div className="form-control">
+                <label htmlFor="password">Password</label>
+                <input type="password" id="password"></input> 
+            </div>
+            <div className="form-actions">
+                <button type="button">Switch to signup</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>;
     }
 }
 

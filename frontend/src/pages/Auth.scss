@@ -1,0 +1,38 @@
+@import '../App.scss';
+
+.auth-form {
+    width: 25rem;
+    max-width: 80%;
+    margin: 5rem auto;
+
+    .form-control {
+        margin-bottom: 1rem;
+        
+
+        label, input{
+            width: 100%;
+            display: block;
+        }
+    }
+
+    .form-actions {
+
+
+        button {
+            background: $mainColor;
+            font: inherit;
+            border:1px solid $mainColor;
+            border-radius: 2px;
+            padding: 0.5rem 1rem;
+            margin-right: 1rem;
+            box-shadow: none;
+            cursor: pointer;
+        }
+
+        button:hover,
+        button:active{
+            background: darken( $mainColor, 5% );
+            border:1px solid darken( $mainColor, 5% );
+        }
+    }
+}

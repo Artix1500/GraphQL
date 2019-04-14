@@ -20,29 +20,30 @@
 .main-nav-item {
     margin: 0 0 0 1.5rem;
     float: right;
+
+    ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        float: right;
+
+        li {
+            padding: 0 1rem;
+            margin: 0;
+
+            a {
+                text-decoration: none;
+                color: $white;
+            }
+
+            a:hover, 
+            a:active,
+            a.active {
+                text-decoration: none;
+                color: $activeWhite;
+            }
+        }
+    }
 }
 
-.main-nav-item ul {
-    display: flex;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    float: right;
-}
-
-.main-nav-item ul li {
-    padding: 0 1rem;
-    margin: 0;
-}
-
-.main-nav-item ul li a {
-    text-decoration: none;
-    color: $white;
-}
-
-.main-nav-item ul li a:hover, 
-.main-nav-item ul li a:active,
-.main-nav-item ul li a.active {
-    text-decoration: none;
-    color: $activeWhite;
-}
