@@ -6,6 +6,27 @@ $activeWhite: rgb(209, 209, 209);
     margin: 4rem 2.5rem;
 }
 
+.form-control {
+    margin-bottom: 1rem;
+    
+    label {
+        width: 100%;
+        display: block;
+        padding: 0.5rem 0;
+        outline: 0;
+        box-shadow: 0;
+    }
+
+    input, textarea{
+        width: 100%;
+        display: block;
+        border: 1px solid rgba(0,0,0,0.1);
+        padding: 0.5rem 0;
+        outline: 0;
+        box-shadow: 0;
+    }
+}
+
 button {
     background: $mainColor;
     font: inherit;

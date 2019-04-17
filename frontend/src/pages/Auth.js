@@ -73,6 +73,12 @@ class AuthPage extends Component {
                 throw new Error('Failed!');
             }
             const resData = await res.json();
+
+            console.log(resData);
+            console.log(resData.data.login.token,
+                resData.data.login.userId,
+                resData.data.login.tokenExpiration)
+            
             if (resData.data.login.token) {
                 this.context.login(
                     resData.data.login.token,
@@ -80,7 +86,6 @@ class AuthPage extends Component {
                     resData.data.login.tokenExpiration
                 );
             }
-            console.log(resData);
         } catch (error) {
             console.log(error);
         }
