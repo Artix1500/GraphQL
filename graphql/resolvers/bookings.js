@@ -10,14 +10,21 @@ module.exports = {
         }
         try {
             const bookings = await Booking.find();
-            return bookings.map(booking => {
-                return { ...booking._doc, 
-                    user: user.bind(this, booking._doc.user),
-                    event: singleEvent.bind(this,booking._doc.event),
-                    createdAt: new Date( booking._doc.createdAt ).toDateString(),
-                    updateAt: new Date( booking._doc.updateAt ).toDateString()
+            const packedBookings = bookings.filter(booking => {
+                if(booking._doc.user._id == req.userId){
+                    return true;
                 }
+                return false;
+            }).map(booking => {                
+                    return { ...booking._doc, 
+                        _id: booking.id,
+                        user: user.bind(this, booking._doc.user),
+                        event: singleEvent.bind(this,booking._doc.event),
+                        createdAt: new Date( booking._doc.createdAt ).toDateString(),
+                        updateAt: new Date( booking._doc.updateAt ).toDateString()
+                    }
             })
+            return packedBookings;
         } catch (error) {
             throw error;
         }
